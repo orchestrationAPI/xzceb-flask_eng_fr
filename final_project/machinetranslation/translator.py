@@ -25,14 +25,11 @@ def english_to_french(english_text):
     french_text = language_translator.translate(
     text=english_text,model_id='en-fr').get_result()
     json_text=json.dumps(french_text)
-    #print(json.dumps(french_text, indent=2)) 
+    print(json.dumps(french_text, indent=2)) 
     json_object = json.loads(json_text)
-    for jobj in json_object:
-      resptext  = jobj
-    print(resptext)
-    #print(json_object['translations']['translation'])
-    # Returns
-    return json_object
+    print(json_object)
+    # Return the english transalation text
+    return json_object.get("translations")[0].get("translation")
 
 
 def french_to_english(french_text):
@@ -43,8 +40,4 @@ def french_to_english(french_text):
     json_text=json.dumps(english_text)
         #print(json.dumps(french_text, indent=2)) 
     json_object = json.loads(json_text)
-    for jobj in json_object:
-        resptext  = jobj
-    print(resptext)
-#return
-    return json_object
+    return json_object.get("translations")[0].get("translation")
